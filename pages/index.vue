@@ -6,6 +6,7 @@
       :title="post.fields.title"
       :id="post.sys.id"
       :date="post.sys.updatedAt"
+      :slug="post.fields.slug"
     />
   </section>
 </template>
