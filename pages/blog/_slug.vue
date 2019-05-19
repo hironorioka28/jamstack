@@ -4,15 +4,15 @@
       {{ article.fields.title }}
     </h1>
     <p class="slug_date">{{ article.sys.updatedAt }}</p>
-    <div>
-      {{ article.fields.body.content[0].content[0].value }}
-    </div>
+    <div v-html="renderedContent" />
   </section>
 </template>
 <script>
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { createClient } from '~/plugins/contentful.js'
 
 const client = createClient()
+
 export default {
   props: {
     id: {
@@ -30,6 +30,11 @@ export default {
         }
       })
       .catch(console.error)
+  },
+  computed: {
+    renderedContent () {
+      return documentToHtmlString(this.article.fields.body)
+    }
   }
 }
 </script>

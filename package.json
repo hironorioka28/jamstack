@@ -11,9 +11,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^13.1.0",
     "cross-env": "^5.2.0",
-    "nuxt": "^2.3.4",
-    "dotenv": "^8.0.0"
+    "dotenv": "^8.0.0",
+    "nuxt": "^2.3.4"
   },
   "devDependencies": {
     "contentful": "^7.6.0",
