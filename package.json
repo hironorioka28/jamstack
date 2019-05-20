@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^13.1.0",
+    "babel-runtime": "^6.26.0",
     "cross-env": "^5.2.0",
     "dotenv": "^8.0.0",
-    "nuxt": "^2.3.4"
+    "nuxt": "^2.3.4",
+    "vue-markdown": "^2.2.4"
   },
   "devDependencies": {
     "contentful": "^7.6.0",

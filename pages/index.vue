@@ -1,12 +1,11 @@
 <template>
   <section class="index">
     <card
-      v-for="(post,i ) in posts"
-      :key="i"
+      v-for="post in posts"
+      :key="post.fields.slug"
       :title="post.fields.title"
-      :id="post.sys.id"
-      :date="post.sys.updatedAt"
       :slug="post.fields.slug"
+      :publishedAt="post.fields.publishedAt"
     />
   </section>
 </template>
@@ -21,15 +20,23 @@ export default {
   components: {
     Card
   },
-  asyncData({ env, params }) {
-    return client
-      .getEntries(env.CTF_BLOG_POST_TYPE_ID)
-      .then(entries => {
-        return {
-          posts: entries.items
-        }
-      })
-      .catch(console.error)
+  async asyncData({ env, params }) {
+    return await client.getEntries({
+      'content_type': env.CTF_BLOG_POST_TYPE_ID,
+      order: '-fields.publishedAt'
+    }).then(entries => {
+      return {
+        posts: entries.items
+      }
+    })
+    .catch(console.error)
   }
 }
 </script>
+
+<style scoped>
+.index {
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>
